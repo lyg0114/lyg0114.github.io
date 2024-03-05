@@ -1,7 +1,7 @@
 ---
 title: "git commit name을 수정해 보자"
 date: 2024-02-19 15:27:00 +09:00
-categories: [ Git ]
+categories: [ 기타 ]
 tags:
   [
     Git, Commit
