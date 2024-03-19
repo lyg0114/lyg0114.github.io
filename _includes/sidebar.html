@@ -20,7 +20,11 @@
     <h1 class="site-title">
       <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
     </h1>
-    <p class="site-subtitle fst-italic mb-0">{{ site.tagline }}</p>
+    <p class="site-subtitle fst-italic mb-0">
+      <!--{{ site.tagline }} // _config 로부터 가져옴 -->
+      <span style='font-weight: bold;'>Talk is cheap Show me the Code</span>
+      <br> - Linus Torvalds -
+    </p>
   </header>
   <!-- .profile-wrapper -->
 
