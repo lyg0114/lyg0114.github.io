@@ -168,3 +168,7 @@ public class Member {
 - 이 방식을 사용할 경우 자동으로 **매핑테이블**이 생성됨
 - 실제 비즈니스환경의 다양한 요구사항에 유연하게 대응하기 힘든 구조 ( 사용 자제 )
 - N : M 은 결국 [1 : N] [M : 1] 두개의 관계로 다시 풀어낼 수 있음.
+
+
+[자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic/dashboard)
+[hibernate.org](https://hibernate.org/)
