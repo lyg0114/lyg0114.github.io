@@ -147,6 +147,10 @@ class ItemRepository {
 - 예를들어 위의 코드에서 price가 null이라면 영속화된 객체 item 의 필드값 price에 null로 덮어쓰게 된다. 따라서 이 방식 보다는 **변경감지(Dirty checking)** 방식을 사용하자
 
 
+<br>
+<br>
+<br>
+<br>
 
 [자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic/dashboard) <br>
 [hibernate.org](https://hibernate.org/)
