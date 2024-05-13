@@ -7,6 +7,7 @@ tags:
     java, jpa, Hibernate, spring, spring data jpa, database, mysql
   ]
 ---
+
 # JPA를 쓰는 이유
 
 OOP 와 RDB 사이의 간극을 극복하기위해 사용.
@@ -30,7 +31,7 @@ JPA에서 조회를 하면 바로 DB에 조회를 하는것이 아닌 **1차캐�
 4. DB로 부터 가져온 데이터를 1차캐시에 업로드
 5. 1차캐시에서 데이터 조회
 
-## 데이터 저장
+## 데이터 INSERT
 
 - DB에 네트워크를 사용하여 쿼리를 전송하는것은 상당한 비용이 발생한다. 따라서 DB에 쿼리를전송하기전 가장 최적의 데이터 상태를 유지하고 트랜잭션이 종료될때 쿼리를 DB에 전송한다.
 
@@ -60,12 +61,13 @@ public class JpaBookMain {
 }
 ```
 
-## 데이터 변경 : 변경감지 (Dirty Checking)
+## 데이터 변경
 
-- 아래의 코드에서 findMember를 다시 persist 하거나, update하는 코드는 찾아볼 수 없다. 그 이유는 바로 트랜잭션 종료시점에 **EntityManager의 스냅샷(DB 에서 읽어온 최초의 상태)**과 비교하여 변경이 일어났다면 하이버네이트가 **자동으로 update 쿼리를 생성**하여 DB에 전송한다.
+### 변경감지 (Dirty Checking)
 
+- 아래의 코드에서 findMember를 다시 persist 하거나, update하는 코드는 찾아볼 수 없다. 그 이유는 바로 트랜잭션 종료시점에 **EntityManager의 스냅샷(DB 에서 읽어온 최초의
+  상태)**과 비교하여 변경이 일어났다면 하이버네이트가 **자동으로 update 쿼리를 생성**하여 DB에 전송한다.
   <img src="/assets/img/dirty-checking.png" alt="x609" width="600">
-
 
 ```java
 public class Main {
@@ -106,5 +108,45 @@ public class Main {
 }
 ```
 
-[자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic/dashboard)
+### 병합 (merge)
+  <img src="/assets/img/merge.png" alt="x609" width="600">
+- jpa 에서 데이터를 수정하는 방법으로 merge가 있다. 이 방식은 객체를 영속화하기는 하지만 변경하고자하는 값으로 덮어씌우는 방식이라 사용할떄 주의가 필요하다. 
+
+```java
+@Entity
+class Item {
+  @Id @GeneratedValue
+  private Long id;
+  private String name;
+  private int price;
+  private int stockQuantity;
+}
+
+@Repository
+@RequiredArgsConstructor
+class ItemRepository {
+  private final EntityManager em;
+  
+  public void saveWithMerge(Item item) {
+    if (item.getId() == null) {
+      em.persist(item);
+    } else {
+      em.merge(item);       // itemId 값이 null 이 아닐때(이미 insert된적 있는 객채) 
+                            // DB에서 가져온 영속화된 객체에 item 객체의 필드를 덮어씌워서 영속화 진행
+    }
+  }
+  
+  public void saveWithDirtyChecking(Item item) {
+    Item findItem = em.find(Item.class, id);    // 1차캐시 또는 DB로 부터 영속화된 객체 생성
+    findItem.update(item);                      // 영속화된 객체에서 필요한 부분만 item을 통해 수정
+                                                // transaction commit 시점에 DB로 update 쿼리 생성
+  }
+}
+```
+
+- 예를들어 위의 코드에서 price가 null이라면 영속화된 객체 item 의 필드값 price에 null로 덮어쓰게 된다. 따라서 이 방식 보다는 **변경감지(Dirty checking)** 방식을 사용하자
+
+
+
+[자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic/dashboard) <br>
 [hibernate.org](https://hibernate.org/)

@@ -170,5 +170,6 @@ public class Member {
 - N : M 은 결국 [1 : N] [M : 1] 두개의 관계로 다시 풀어낼 수 있음.
 
 
-[자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic/dashboard)
+
+[자바 ORM 표준 JPA 프로그래밍 - 기본편](https://www.inflearn.com/course/ORM-JPA-Basic/dashboard) <br>
 [hibernate.org](https://hibernate.org/)
