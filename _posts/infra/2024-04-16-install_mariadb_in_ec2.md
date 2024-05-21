@@ -1,5 +1,5 @@
 ---
-title: "ec2에 mariaDB를 설치해보자"
+title: "EC2에 MariaDB를 설치해보자"
 date: 2024-04-16 15:40:00 +09:00
 categories: [ 인프라 ]
 tags:

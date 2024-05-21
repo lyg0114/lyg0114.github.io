@@ -1,5 +1,5 @@
 ---
-title: "[JPA] 연관관계 매핑"
+title: "JPA 연관관계 매핑"
 date: 2024-05-11 20:40:00 +09:00
 categories: [ database ]
 tags:

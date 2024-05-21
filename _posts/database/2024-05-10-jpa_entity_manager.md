@@ -1,5 +1,5 @@
 ---
-title: "[JPA] 영속성 컨텍스트"
+title: "JPA 영속성 컨텍스트"
 date: 2024-05-10 20:40:00 +09:00
 categories: [ database ]
 tags:

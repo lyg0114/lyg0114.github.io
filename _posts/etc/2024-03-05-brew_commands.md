@@ -1,5 +1,5 @@
 ---
-title: "HomeBrew Commands"
+title: "HomeBrew 명령어 정리"
 date: 2024-03-05 16:40:00 +09:00
 categories: [ 기타 ]
 tags:

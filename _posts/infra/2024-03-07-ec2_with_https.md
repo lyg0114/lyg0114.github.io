@@ -1,5 +1,5 @@
 ---
-title: "EC2에 https 설정을 해보자"
+title: "EC2에 HTTPS 설정을 해보자"
 date: 2024-03-09 16:40:00 +09:00
 categories: [ 인프라 ]
 tags:
