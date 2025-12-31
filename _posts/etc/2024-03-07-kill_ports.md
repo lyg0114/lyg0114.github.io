@@ -9,6 +9,8 @@ tags:
 ---
 
 ```bash
+
 lsof -i :[port]
 kill -9 [pid]
+
 ```
